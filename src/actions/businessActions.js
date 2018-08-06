@@ -8,6 +8,12 @@ export function beginFetch() {
   };
 }
 
+export function closeCard() {
+  return {
+    type: types.CLOSE_CARD
+  }
+}
+
 export function getBusinesses() {
   return function(dispatch) {
     dispatch(beginFetch());
@@ -33,5 +39,12 @@ export function getBusinessesSuccess(businesses) {
   return {
     type: types.GET_BUSINESSES_SUCCESS,
     businesses,
+  }
+}
+
+export function selectBusinessMarker(business) {
+  return {
+    type: types.SELECT_BUSINESS_MARKER,
+    business,
   }
 }
