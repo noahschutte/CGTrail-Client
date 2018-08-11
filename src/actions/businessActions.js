@@ -5,9 +5,9 @@ let api = '';
 if (env === 'development') {
   api = process.env.REACT_APP_LOCAL_API;
 } else if (env === 'staging') {
-  api = process.env.STAGING_API;
+  api = process.env.REACT_APP_STAGING_API;
 } else if (env === 'production') {
-  api = process.env.PRODUCTION_API;
+  api = process.env.REACT_APP_PRODUCTION_API;
 }
 
 console.log('process.env: ', process.env)
