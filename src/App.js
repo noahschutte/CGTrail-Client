@@ -6,6 +6,7 @@ import Header from './components/Header';
 import BottomNav from './components/BottomNav';
 import MapView from './pages/MapView';
 import BusinessList from './pages/BusinessList';
+import Login from './pages/Login';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -30,6 +31,10 @@ class App extends Component {
               <Route
                 exact path="/businesses"
                 component={BusinessList}
+              />
+              <Route
+                exact path="/login"
+                component={Login}
               />
             </Switch>
           </BrowserRouter>

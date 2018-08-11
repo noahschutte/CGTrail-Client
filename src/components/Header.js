@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 import logo from '../assets/DUShield.png'
+import LoginButton from './LoginButton';
 
 const styles = {
   root: {
@@ -45,10 +46,12 @@ const Header = props => {
                 </Typography>
               </a>
             </div>
-            
+
             <Button href="/businesses" color="inherit">
               &nbsp; Businesses
             </Button>
+
+            <LoginButton />
 
           </Toolbar>
         </AppBar>
