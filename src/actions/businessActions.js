@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-const env = process.env.NODE_ENV;
+const env = process.env.REACT_APP_ENV;
 
 let api = '';
 if (env === 'development') {
