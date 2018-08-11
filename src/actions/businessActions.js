@@ -25,8 +25,13 @@ export function closeCard() {
 export function getBusinesses() {
   return function(dispatch) {
     dispatch(beginFetch());
+    console.log('api: ', api);
     fetch(api + '/businesses')
-      .then(res => res.json())
+      // .then(res => res.json())
+      .then(res => {
+        console.log('res: ', res);
+        return res.json();
+      })
       .then(response => {
         dispatch(getBusinessesSuccess(response));
       })
