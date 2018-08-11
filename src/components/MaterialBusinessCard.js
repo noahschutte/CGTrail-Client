@@ -23,10 +23,12 @@ const styles = {
     position: 'absolute',
     right: '5%',
     bottom: '10%',
+    overflow: 'auto',
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    // paddingTop: '56.25%', // 16:9
+    paddingTop: '75%',  // 4:3
   },
   logo: {
     maxWidth: '100%',
@@ -42,17 +44,18 @@ const styles = {
     padding: '15px',
   },
   businessURL: {
-    padding: '15px',
     textDecoration: 'none',
     color: 'black',
   },
-  cardActions: {
-    position: 'absolute',
-    bottom: 0,
+  UrlWrapper: {
+    paddingTop: '15px',
   },
+  // cardActions: {
+  //   position: 'absolute',
+  //   bottom: 0,
+  // },
   alumDetails: {
     fontWeight: 500,
-    // padding: '10px',
   },
   alumClass: {
     fontWeight: 500,
@@ -60,8 +63,7 @@ const styles = {
   }
 };
 
-const MaterialBusinessCard = ({ classes, business}) => {
-  console.log('business; ', business);
+const MaterialBusinessCard = ({ classes, business, closeCard }) => {
   return (
     <div id="card-wrapper">
       <MuiThemeProvider theme={theme}>
@@ -79,10 +81,10 @@ const MaterialBusinessCard = ({ classes, business}) => {
               {business.Class ? 'Class of ' + business.Class : null}
             </Typography>
             <img src={business.Logo_Url} className={classes.logo} />
-            <Typography className={classes.businessName} variant="display1">
+            {/* <Typography className={classes.businessName} variant="display1">
               {business.BusinessName}
-            </Typography>
-            <Typography variant="subheading">
+            </Typography> */}
+            <Typography className={classes.UrlWrapper} variant="subheading">
               <a target="_blank" className={classes.businessURL} href={business.Url}>
                 {business.Url}
               </a>
@@ -93,11 +95,11 @@ const MaterialBusinessCard = ({ classes, business}) => {
           </CardContent>
           <CardActions className={classes.cardActions}>
             <Button size="small" color="primary">
-              Share
+              { business.AlumName ? `Learn more about ${business.AlumName}` : null}
             </Button>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
+            <Button onClick={closeCard} size="small" color="primary">
+            Close
+          </Button>
           </CardActions>
         </Card>
       </MuiThemeProvider>
