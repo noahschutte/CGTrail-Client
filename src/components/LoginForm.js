@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
@@ -22,7 +23,7 @@ const styles = theme => ({
     color: 'black',
   },
   input: {
-    borderBottom: 'rgba(0,0,0,0.3) 2px solid',
+    borderBottom: 'rgba(0,0,0,0.3) 1px solid',
     color: 'black',
     width: '320px',
     maxWidth: '95vw',
@@ -31,25 +32,36 @@ const styles = theme => ({
     width: '320px',
     maxWidth: '95vw',
     marginTop: '10px',
+  },
+  formHelperText: {
+    color: 'red',
   }
 });
 
-const LoginForm = ({ classes, email, handleEmailChange, password, handlePasswordChange, handleLogin }) => {
+const LoginForm = props => {
+  const { classes, email, password, emailHelperText, passwordHelperText } = props;
   return (
-    <div className={classes.container}>
-      <FormControl className={classes.formControl}>
-        <InputLabel className={classes.inputLabel} htmlFor="name-simple">Email</InputLabel>
-        <Input className={classes.input} type="email" id="name-simple" value={email} onChange={handleEmailChange} />
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel className={classes.inputLabel} htmlFor="name-helper">Password</InputLabel>
-        <Input className={classes.input} type="password" id="name-helper" value={password} onChange={handlePasswordChange} />
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <Button onClick={handleLogin} variant="contained" color="default" className={classes.loginButton}>
-          Login
-        </Button>
-      </FormControl>
+    <div style={{ flex: 1 }}>
+      <form className={classes.container}>
+        <FormControl error={emailHelperText ? true : false} className={classes.formControl}>
+          <InputLabel className={classes.inputLabel} htmlFor="name-simple">Email</InputLabel>
+          <Input className={classes.input} type="email" id="name-simple" value={email} onChange={props.handleEmailChange} />
+          <FormHelperText className={classes.formHelperText}>{emailHelperText}</FormHelperText>
+        </FormControl>
+
+        <FormControl error={passwordHelperText ? true : false} className={classes.formControl}>
+          <InputLabel className={classes.inputLabel} htmlFor="name-helper">Password</InputLabel>
+          <Input className={classes.input} type="password" id="name-helper" value={password} onChange={props.handlePasswordChange} />
+          <FormHelperText className={classes.formHelperText}>{passwordHelperText}</FormHelperText>
+        </FormControl>
+
+        <FormControl className={classes.formControl}>
+          <Button type="submit" onClick={props.handleLogin} variant="contained" color="default" className={classes.loginButton}>
+            Login
+          </Button>
+        </FormControl>
+      </form>
+
     </div>
   );
 }

@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import logo from '../assets/DUShield.png'
 import LoginButton from './LoginButton';
 
-const styles = {
+const styles = theme => ({
   root: {
     display: 'flex',
     backgroundColor: 'rgb(33,34,33)',
@@ -20,6 +20,9 @@ const styles = {
   },
   headerNav: {
     textDecoration: 'none',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
   logoAndTitle: {
     display: 'flex',
@@ -27,7 +30,7 @@ const styles = {
     alignItems: 'center',
     flexGrow: 1,
   }
-};
+});
 
 const Header = props => {
   const { classes } = props;
@@ -37,7 +40,7 @@ const Header = props => {
           <Toolbar>
 
             <div className={classes.logoAndTitle}>
-              <a href="/">
+              <a className={classes.logo} href="/">
                 <img alt="DU shield logo" className={classes.logo} src={logo} />
               </a>
               <a href="/" className={classes.headerNav}>
