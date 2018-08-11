@@ -10,6 +10,8 @@ if (env === 'development') {
   api = process.env.PRODUCTION_API;
 }
 
+console.log('process.env: ', process.env)
+
 export function beginFetch() {
   return {
     type: types.BEGIN_FETCH,
