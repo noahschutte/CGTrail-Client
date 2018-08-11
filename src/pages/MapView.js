@@ -27,7 +27,7 @@ class MapView extends Component {
             })
           })}
         </Map>
-        { this.props.business ? <MaterialBusinessCard business={this.props.business} /> : null }
+        { this.props.business ? <MaterialBusinessCard closeCard={this.props.closeCard} business={this.props.business} /> : null }
       </div>
     );
   }

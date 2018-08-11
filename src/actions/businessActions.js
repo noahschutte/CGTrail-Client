@@ -1,6 +1,14 @@
 import * as types from './actionTypes';
+const env = process.env.NODE_ENV;
 
-const local_api = 'http://localhost:8000'
+let api = '';
+if (env === 'development') {
+  api = process.env.REACT_APP_LOCAL_API;
+} else if (env === 'staging') {
+  api = process.env.STAGING_API;
+} else if (env === 'production') {
+  api = process.env.PRODUCTION_API;
+}
 
 export function beginFetch() {
   return {
@@ -17,7 +25,7 @@ export function closeCard() {
 export function getBusinesses() {
   return function(dispatch) {
     dispatch(beginFetch());
-    fetch(local_api + '/businesses')
+    fetch(api + '/businesses')
       .then(res => res.json())
       .then(response => {
         dispatch(getBusinessesSuccess(response));
