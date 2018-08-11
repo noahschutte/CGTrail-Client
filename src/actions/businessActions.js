@@ -10,8 +10,6 @@ if (env === 'development') {
   api = process.env.REACT_APP_PRODUCTION_API;
 }
 
-console.log('process.env: ', process.env)
-
 export function beginFetch() {
   return {
     type: types.BEGIN_FETCH,
@@ -27,13 +25,8 @@ export function closeCard() {
 export function getBusinesses() {
   return function(dispatch) {
     dispatch(beginFetch());
-    console.log('api: ', api);
     fetch(api + '/businesses')
-      // .then(res => res.json())
-      .then(res => {
-        console.log('res: ', res);
-        return res.json();
-      })
+      .then(res => res.json())
       .then(response => {
         dispatch(getBusinessesSuccess(response));
       })

@@ -64,7 +64,6 @@ const styles = {
 };
 
 const MaterialBusinessCard = ({ classes, business, closeCard }) => {
-  console.log('business; ', business);
   return (
     <div id="card-wrapper">
       <MuiThemeProvider theme={theme}>
