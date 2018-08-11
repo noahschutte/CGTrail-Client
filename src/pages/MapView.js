@@ -3,7 +3,6 @@ import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import { connect } from 'react-redux';
 
 import MaterialBusinessCard from '../components/MaterialBusinessCard';
-import config from '../.config';
 import images from '../assets/images';
 import { closeCard, getBusinesses, selectBusinessMarker } from '../actions/businessActions';
 
@@ -37,5 +36,5 @@ const mapStateToProps = ({ businesses }) => {
   return { business: businesses.business, businesses: businesses.businesses, isFetching: businesses.isFetching };
 }
 
-const GoogleMapsApiKey = config.REACT_APP_GOOGLE_MAPS_API_KEY;
+const GoogleMapsApiKey = process.env.REACT_APP_MAPS_API_KEY;
 export default connect(mapStateToProps, { closeCard, getBusinesses, selectBusinessMarker })(GoogleApiWrapper({ apiKey: GoogleMapsApiKey })(MapView))

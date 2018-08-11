@@ -5,6 +5,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Header from './components/Header';
 import BottomNav from './components/BottomNav';
 import MapView from './pages/MapView';
+import BusinessList from './pages/BusinessList';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -24,7 +25,12 @@ class App extends Component {
             <Switch>
               <Route
                 exact path="/"
-                component={() => <MapView isFetching={this.props.isFetching} businesses={this.props.businesses} />} />
+                component={MapView}
+              />
+              <Route
+                exact path="/businesses"
+                component={BusinessList}
+              />
             </Switch>
           </BrowserRouter>
           <BottomNav />
