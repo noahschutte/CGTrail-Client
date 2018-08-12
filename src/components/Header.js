@@ -33,7 +33,7 @@ const styles = theme => ({
 });
 
 const Header = props => {
-  const { classes } = props;
+  const { classes, isLoggedIn, handleLogout } = props;
   return (
       <div className={classes.root}>
         <AppBar position="static" color="default">
@@ -54,7 +54,7 @@ const Header = props => {
               &nbsp; Businesses
             </Button>
 
-            <LoginButton />
+            {isLoggedIn ? <Button onClick={handleLogout} color="inherit">Logout</Button> : <LoginButton />}
 
           </Toolbar>
         </AppBar>

@@ -18,6 +18,13 @@ export function beginFetch() {
   }
 }
 
+export function beginLogout() {
+  localStorage.clear();
+  return {
+    type: types.LOGOUT,
+  }
+}
+
 export function login(email, password) {
   return function(dispatch) {
     dispatch(beginFetch());
@@ -27,16 +34,17 @@ export function login(email, password) {
     })
     fetch(api + '/users/login', {
       headers: {
-        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body,
       method: 'POST',
     })
-    .then(res => res.json())
-    .then(response => {
-      console.log('response: ', response);
-      dispatch(loginSuccess(response));
+    .then(res => {
+      if (res.ok) {
+        dispatch(loginSuccess(res.headers.get('x-auth')));
+      } else {
+        throw res;
+      }
     })
     .catch(err => {
       dispatch(loginError(err));
@@ -44,10 +52,18 @@ export function login(email, password) {
   }
 }
 
-export function loginSuccess(usrData) {
+export function setJWT(jwt) {
+  return {
+    type: types.SET_JWT,
+    jwt,
+  }
+}
+
+export function loginSuccess(jwt) {
+  localStorage.setItem('jwt', jwt);
   return {
     type: types.LOGIN_SUCCESS,
-    usrData,
+    jwt,
   }
 }
 
@@ -55,5 +71,44 @@ export function loginError(error) {
   console.error('error: ', error);
   return {
     type: types.LOGIN_ERROR,
+  }
+}
+
+export function logout(token) {
+  console.log('hit here too: ', token);
+  return function(dispatch) {
+    dispatch(beginLogout());
+    fetch(api + '/users/logout', {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'x-auth': token
+      },
+      method: 'DELETE'
+    })
+    .then(res => {
+      if (res.ok) {
+        dispatch(logoutSuccess());
+      } else {
+        dispatch(logoutError(res));
+      }
+    })
+    .catch(error => {
+      dispatch(logoutError(error));
+    })
+  }
+}
+
+export function logoutError(error) {
+  console.error('error: ', error);
+  return {
+    type: types.LOGOUT_ERROR,
+    error,
+  }
+}
+
+export function logoutSuccess() {
+  return {
+    type: types.LOGOUT_SUCCESS,
   }
 }
