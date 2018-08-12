@@ -36,8 +36,8 @@ export function login(email, password) {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'POST',
-        'Access-Control-Allow-Headers': 'application/json, text/html'
-        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+        'Content-Type': 'application/json, text/html'
       },
       body,
       method: 'POST',
@@ -85,8 +85,8 @@ export function logout(token) {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'DELETE',
-        'Access-Control-Allow-Headers': 'application/json, text/html'
-        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+        'Content-Type': 'application/json, text/html'
         'x-auth': token
       },
       method: 'DELETE'
