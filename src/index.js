@@ -12,9 +12,9 @@ const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-      <HttpsRedirect>
-          <App />
-      </HttpsRedirect>
+    <HttpsRedirect>
+      <App />
+    </HttpsRedirect>
   </Provider>,
   document.getElementById('root')
 );
