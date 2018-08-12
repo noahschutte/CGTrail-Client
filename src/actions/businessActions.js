@@ -25,7 +25,11 @@ export function closeCard() {
 export function getBusinesses() {
   return function(dispatch) {
     dispatch(beginFetch());
-    fetch(api + '/businesses')
+    fetch(api + '/businesses', {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      }
+    })
       .then(res => res.json())
       .then(response => {
         dispatch(getBusinessesSuccess(response));

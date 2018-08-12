@@ -34,6 +34,7 @@ export function login(email, password) {
     })
     fetch(api + '/users/login', {
       headers: {
+        'Acess-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
       },
       body,
