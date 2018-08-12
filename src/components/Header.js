@@ -4,30 +4,58 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 import logo from '../assets/DUShield.png'
+import LoginButton from './LoginButton';
 
-const styles = {
+const styles = theme => ({
   root: {
-    // flexGrow: 1,
+    display: 'flex',
     backgroundColor: 'rgb(33,34,33)',
   },
   logo: {
     maxHeight: '40px',
     paddingRight: '15px',
   },
-};
+  headerNav: {
+    textDecoration: 'none',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
+  },
+  logoAndTitle: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexGrow: 1,
+  }
+});
 
 const Header = props => {
-  const { classes } = props;
+  const { classes, isLoggedIn, handleLogout } = props;
   return (
       <div className={classes.root}>
         <AppBar position="static" color="default">
           <Toolbar>
-            <img alt="DU shield logo" className={classes.logo} src={logo} />
-            <Typography variant="title" >
-              Crimson & Gold Trail
-            </Typography>
+
+            <div className={classes.logoAndTitle}>
+              <a className={classes.logo} href="/">
+                <img alt="DU shield logo" className={classes.logo} src={logo} />
+              </a>
+              <a href="/" className={classes.headerNav}>
+                <Typography variant="title" >
+                  Crimson & Gold Trail
+                </Typography>
+              </a>
+            </div>
+
+            <Button href="/businesses" color="inherit">
+              &nbsp; Businesses
+            </Button>
+
+            {isLoggedIn ? <Button onClick={handleLogout} color="inherit">Logout</Button> : <LoginButton />}
+
           </Toolbar>
         </AppBar>
       </div>
