@@ -34,7 +34,9 @@ export function login(email, password) {
     })
     fetch(api + '/users/login', {
       headers: {
-        'Acess-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': '*',
+        'Acess-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': 'application/json, text/html'
         'Content-Type': 'application/json',
       },
       body,
@@ -82,6 +84,8 @@ export function logout(token) {
     fetch(api + '/users/logout', {
       headers: {
         'Access-Control-Allow-Origin': '*',
+        'Acess-Control-Allow-Methods': 'DELETE',
+        'Access-Control-Allow-Headers': 'application/json, text/html'
         'Content-Type': 'application/json',
         'x-auth': token
       },
