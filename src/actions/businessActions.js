@@ -30,7 +30,7 @@ export function getBusinesses() {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET',
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-        'Content-Type': 'application/json, text/html'
+        'Content-Type': 'application/json, stext/html'
       }
     })
       .then(res => res.json())
