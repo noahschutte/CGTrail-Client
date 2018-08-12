@@ -32,7 +32,6 @@ export function login(email, password) {
       email,
       password
     })
-    console.log('body: ', body);
     fetch(api + '/users/login', {
       headers: {
         'Access-Control-Allow-Origin': '*',
