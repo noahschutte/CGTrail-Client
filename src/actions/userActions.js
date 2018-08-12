@@ -86,7 +86,7 @@ export function logout(token) {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'DELETE',
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-        'Content-Type': 'application/json, text/html'
+        'Content-Type': 'application/json, text/html',
         'x-auth': token
       },
       method: 'DELETE'
