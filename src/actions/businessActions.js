@@ -28,7 +28,7 @@ export function getBusinesses() {
     fetch(api + '/businesses', {
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Acess-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Methods': 'GET',
         'Access-Control-Allow-Headers': 'application/json, text/html'
       }
     })
