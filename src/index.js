@@ -6,12 +6,15 @@ import configureStore from './store/configureStore';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import HttpsRedirect from 'react-https-redirect';
 
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <HttpsRedirect>
+      <App />
+    </HttpsRedirect>
   </Provider>,
   document.getElementById('root')
 );
