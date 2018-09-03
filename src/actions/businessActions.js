@@ -18,20 +18,21 @@ export function beginFetch() {
 
 export function closeCard() {
   return {
-    type: types.CLOSE_CARD
-  }
+    type: types.CLOSE_CARD,
+  };
 }
 
 export function getBusinesses() {
   return function(dispatch) {
     dispatch(beginFetch());
+    /* eslint-disable-next-line */
     fetch(api + '/businesses', {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET',
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-        'Content-Type': 'application/json, stext/html'
-      }
+        'Content-Type': 'application/json, stext/html',
+      },
     })
       .then(res => res.json())
       .then(response => {
@@ -39,27 +40,27 @@ export function getBusinesses() {
       })
       .catch(err => {
         dispatch(getBusinessesError(err));
-      })
-  }
+      });
+  };
 }
 
 export function getBusinessesError(error) {
   console.error('error: ', error);
   return {
-    type: types.GET_BUSINESSES_ERROR
-  }
+    type: types.GET_BUSINESSES_ERROR,
+  };
 }
 
 export function getBusinessesSuccess(businesses) {
   return {
     type: types.GET_BUSINESSES_SUCCESS,
     businesses,
-  }
+  };
 }
 
 export function selectBusinessMarker(business) {
   return {
     type: types.SELECT_BUSINESS_MARKER,
     business,
-  }
+  };
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -15,12 +16,11 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
   },
-})
+});
 
 class App extends Component {
-
   componentDidMount() {
-    const jwt = localStorage.jwt;
+    const jwt = window.localStorage.jwt;
     if (jwt) {
       this.props.setJWT(jwt);
     }
@@ -32,21 +32,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <MuiThemeProvider theme={theme}>
           <Header isLoggedIn={this.props.isLoggedIn} handleLogout={this.handleLogout} />
           <BrowserRouter>
             <Switch>
               <Route
-                exact path="/"
+                exact path='/'
                 component={MapView}
               />
               <Route
-                exact path="/businesses"
+                exact path='/businesses'
                 component={BusinessList}
               />
               <Route
-                exact path="/login"
+                exact path='/login'
                 component={Login}
               />
             </Switch>
@@ -60,6 +60,13 @@ class App extends Component {
 
 const mapStateToProps = ({ users }) => {
   return { isLoggedIn: users.isLoggedIn, token: users.jwt };
-}
+};
+
+App.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  logout: PropTypes.func,
+  setJWT: PropTypes.func,
+  token: PropTypes.string,
+};
 
 export default connect(mapStateToProps, { logout, setJWT })(App);

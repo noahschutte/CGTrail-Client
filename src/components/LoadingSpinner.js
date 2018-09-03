@@ -4,4 +4,4 @@ export default () => (
   <div>
     Hey there, I'm a loading spinner!
   </div>
-)
+);

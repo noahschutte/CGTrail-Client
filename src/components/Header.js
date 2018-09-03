@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import logo from '../assets/DUShield.png'
+import logo from '../assets/DUShield.png';
 import LoginButton from './LoginButton';
 
 const styles = theme => ({
@@ -29,41 +29,43 @@ const styles = theme => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexGrow: 1,
-  }
+  },
 });
 
 const Header = props => {
   const { classes, isLoggedIn, handleLogout } = props;
   return (
-      <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Toolbar>
+    <div className={classes.root}>
+      <AppBar position='static' color='default'>
+        <Toolbar>
 
-            <div className={classes.logoAndTitle}>
-              <a className={classes.logo} href="/">
-                <img alt="DU shield logo" className={classes.logo} src={logo} />
-              </a>
-              <a href="/" className={classes.headerNav}>
-                <Typography variant="title" >
-                  Crimson & Gold Trail
-                </Typography>
-              </a>
-            </div>
+          <div className={classes.logoAndTitle}>
+            <a className={classes.logo} href='/'>
+              <img alt='DU shield logo' className={classes.logo} src={logo} />
+            </a>
+            <a href='/' className={classes.headerNav}>
+              <Typography variant='title' >
+                Crimson & Gold Trail
+              </Typography>
+            </a>
+          </div>
 
-            <Button href="/businesses" color="inherit">
-              &nbsp; Businesses
-            </Button>
+          <Button href='/businesses' color='inherit'>
+            &nbsp; Businesses
+          </Button>
 
-            {isLoggedIn ? <Button onClick={handleLogout} color="inherit">Logout</Button> : <LoginButton />}
+          {isLoggedIn ? <Button onClick={handleLogout} color='inherit'>Logout</Button> : <LoginButton />}
 
-          </Toolbar>
-        </AppBar>
-      </div>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
-}
+};
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
+  handleLogout: PropTypes.func,
+  isLoggedIn: PropTypes.bool,
 };
 
 export default withStyles(styles)(Header);

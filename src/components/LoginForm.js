@@ -35,7 +35,7 @@ const styles = theme => ({
   },
   formHelperText: {
     color: 'red',
-  }
+  },
 });
 
 const LoginForm = props => {
@@ -43,20 +43,20 @@ const LoginForm = props => {
   return (
     <div style={{ flex: 1 }}>
       <form className={classes.container}>
-        <FormControl error={emailHelperText ? true : false} className={classes.formControl}>
-          <InputLabel className={classes.inputLabel} htmlFor="name-simple">Email</InputLabel>
-          <Input className={classes.input} type="email" id="name-simple" value={email} onChange={props.handleEmailChange} />
+        <FormControl error={!!emailHelperText} className={classes.formControl}>
+          <InputLabel className={classes.inputLabel} htmlFor='name-simple'>Email</InputLabel>
+          <Input className={classes.input} type='email' id='name-simple' value={email} onChange={props.handleEmailChange} />
           <FormHelperText className={classes.formHelperText}>{emailHelperText}</FormHelperText>
         </FormControl>
 
-        <FormControl error={passwordHelperText ? true : false} className={classes.formControl}>
-          <InputLabel className={classes.inputLabel} htmlFor="name-helper">Password</InputLabel>
-          <Input className={classes.input} type="password" id="name-helper" value={password} onChange={props.handlePasswordChange} />
+        <FormControl error={!!passwordHelperText} className={classes.formControl}>
+          <InputLabel className={classes.inputLabel} htmlFor='name-helper'>Password</InputLabel>
+          <Input className={classes.input} type='password' id='name-helper' value={password} onChange={props.handlePasswordChange} />
           <FormHelperText className={classes.formHelperText}>{passwordHelperText}</FormHelperText>
         </FormControl>
 
         <FormControl className={classes.formControl}>
-          <Button type="submit" onClick={props.handleLogin} variant="contained" color="default" className={classes.loginButton}>
+          <Button type='submit' onClick={props.handleLogin} variant='contained' color='default' className={classes.loginButton}>
             Login
           </Button>
         </FormControl>
@@ -64,13 +64,16 @@ const LoginForm = props => {
 
     </div>
   );
-}
+};
 
 LoginForm.propTypes = {
   classes: PropTypes.object.isRequired,
   email: PropTypes.string,
+  emailHelperText: PropTypes.string,
   handleEmailChange: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func,
   password: PropTypes.string,
+  passwordHelperText: PropTypes.string,
   handlePasswordChange: PropTypes.func.isRequired,
 };
 

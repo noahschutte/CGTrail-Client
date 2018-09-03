@@ -5,10 +5,10 @@ const INITIAL_STATE = {
   isFetching: false,
   jwt: null,
   isLoggedIn: false,
-}
+};
 
 export default function usersReducer(state = INITIAL_STATE, action) {
-  switch(action.type) {
+  switch (action.type) {
     case types.BEGIN_FETCH:
       return {
         ...state,
@@ -18,7 +18,7 @@ export default function usersReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isFetching: false,
-      }
+      };
     case types.LOGIN_SUCCESS:
       return {
         ...state,
@@ -36,8 +36,8 @@ export default function usersReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isFetching: false,
-        error: action.error
-      }
+        error: action.error,
+      };
     case types.LOGOUT_SUCCESS:
       return {
         ...state,
@@ -45,7 +45,7 @@ export default function usersReducer(state = INITIAL_STATE, action) {
         jwt: null,
         error: null,
         isLoggedIn: false,
-      }
+      };
     case types.SET_JWT:
       return {
         ...state,
@@ -55,6 +55,6 @@ export default function usersReducer(state = INITIAL_STATE, action) {
     default:
       return {
         ...state,
-      }
+      };
   }
 }

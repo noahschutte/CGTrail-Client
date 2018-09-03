@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { login } from '../actions/userActions';
 
 import LoginForm from '../components/LoginForm';
 
 class Login extends Component {
-
   state = {
     email: '',
     password: '',
@@ -23,7 +23,6 @@ class Login extends Component {
 
   handleLogin = (e) => {
     e.preventDefault();
-    
     const { email, password } = this.state;
     let emailHelperText = '';
     let passwordHelperText = '';
@@ -44,7 +43,7 @@ class Login extends Component {
   render() {
     const { email, password, emailHelperText, passwordHelperText } = this.state;
     return (
-      <div style={{ display: 'flex', flexGrow: 1, }}>
+      <div style={{ display: 'flex', flexGrow: 1 }}>
         <LoginForm
           email={email}
           password={password}
@@ -55,8 +54,12 @@ class Login extends Component {
           passwordHelperText={passwordHelperText}
         />
       </div>
-    )
+    );
   }
 }
+
+Login.propTypes = {
+  login: PropTypes.func,
+};
 
 export default connect(null, { login })(Login);
