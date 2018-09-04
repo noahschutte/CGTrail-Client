@@ -5,6 +5,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
 // import * as Icons from '@material-ui/icons'
 
 const styles = (theme) => ({
@@ -51,6 +52,7 @@ class BottomNav extends Component {
       >
         <BottomNavigationAction href='/' className={classes.icon} label='Near Me' icon={<GpsFixedIcon />} />
         <BottomNavigationAction href='/login' className={classes.loginIcon} label='Login' icon={<AccountCircle />} />
+        <BottomNavigationAction href='/addbusiness' className={classes.addIcon} label='Add Business' icon={<AddCircleOutline />} />
       </BottomNavigation>
     );
   }

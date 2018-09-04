@@ -7,9 +7,11 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { logout, setJWT } from './actions/userActions';
 import Header from './components/Header';
 import BottomNav from './components/BottomNav';
+// pages
 import MapView from './pages/MapView';
 import BusinessList from './pages/BusinessList';
 import Login from './pages/Login';
+import AddBusiness from './pages/AddBusiness';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -48,6 +50,10 @@ class App extends Component {
               <Route
                 exact path='/login'
                 component={Login}
+              />
+              <Route
+                exact path='/addbusiness'
+                component={AddBusiness}
               />
             </Switch>
           </BrowserRouter>

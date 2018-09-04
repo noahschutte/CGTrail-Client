@@ -16,7 +16,7 @@ class BusinessList extends Component {
   render() {
     return this.props.isFetching || !this.props.businesses.length ? <LoadingSpinner /> : (
       <div>
-        <BusinessNames businessNames={this.props.businesses.map(business => business.BusinessName).sort()} />
+        <BusinessNames businessNames={this.props.businesses.map(business => business.name).sort()} />
       </div>
     );
   }

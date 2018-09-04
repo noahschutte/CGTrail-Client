@@ -62,6 +62,7 @@ const styles = {
 };
 
 const MaterialBusinessCard = ({ classes, business, closeCard }) => {
+  console.log('business: ', business);
   return (
     <div id='card-wrapper'>
       <MuiThemeProvider theme={theme}>
@@ -69,32 +70,36 @@ const MaterialBusinessCard = ({ classes, business, closeCard }) => {
           <CardMedia
             className={classes.media}
             image={business.Primary_Image_Url}
-            title={business.BusinessName}
+            title={business.name}
           />
           <CardContent>
             <Typography className={classes.alumDetails} variant='subheading'>
-              {business.AlumName ? `${business.AlumName}, ${business.Degree}` : null}
+              {business.alumName ? `${business.alumName}, ${business.alumDegree}` : null}
             </Typography>
             <Typography className={classes.alumClass} variant='subheading'>
-              {business.Class ? 'Class of ' + business.Class : null}
+              {business.alumClass ? 'Class of ' + business.alumClass : null}
             </Typography>
             <img src={business.Logo_Url} className={classes.logo} />
             {/* <Typography className={classes.businessName} variant="display1">
-              {business.BusinessName}
+              {business.name}
             </Typography> */}
             <Typography className={classes.UrlWrapper} variant='subheading'>
-              <a target='_blank' className={classes.businessURL} href={business.Url}>
-                {business.Url}
+              <a target='_blank' className={classes.businessURL} href={business.url}>
+                {business.url}
               </a>
             </Typography>
             <Typography className={classes.description} variant='subheading'>
-              {business.Description}
+              {business.description}
             </Typography>
           </CardContent>
           <CardActions className={classes.cardActions}>
-            <Button size='small' color='primary'>
-              { business.AlumName ? `Learn more about ${business.AlumName}` : null}
-            </Button>
+            {
+              business.alumName
+                ? <Button size='small' color='primary'>
+                  { business.alumName ? `Learn more about ${business.alumName}` : null}
+                </Button>
+                : null
+            }
             <Button onClick={closeCard} size='small' color='primary'>
             Close
             </Button>

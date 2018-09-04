@@ -79,7 +79,6 @@ export function loginError(error) {
 }
 
 export function logout(token) {
-  console.log('hit here too: ', token);
   return function(dispatch) {
     dispatch(beginLogout());
     /* eslint-disable-next-line */

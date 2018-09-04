@@ -21,12 +21,12 @@ class MapView extends Component {
       <div className='mapContainer'>
         <Map onClick={this.onMapClick} className='Google-Map' google={this.props.google} zoom={14} ControlPosition='BOTTOM_LEFT' initialCenter={{ lat: 39.757538, lng: -104.939617 }} centerAroundCurrentLocation >
           {this.props.businesses.map(business => {
-            return business.Location.map(location => {
+            return business.locations.map(location => {
               return (
                 <Marker
                   id='marker'
                   onClick={() => this.props.selectBusinessMarker(business)}
-                  position={{ lat: location.Coordinates[0], lng: location.Coordinates[1] }}
+                  position={{ lat: location.coordinates[0], lng: location.coordinates[1] }}
                   icon={{ url: images.Imgur_Icon }}
                 />
               );
@@ -51,7 +51,7 @@ MapView.propTypes = {
   closeCard: PropTypes.func,
   getBusinesses: PropTypes.func,
   google: PropTypes.object,
-  selectBusinessMarker: PropTypes.object,
+  selectBusinessMarker: PropTypes.func,
 };
 
 export default connect(mapStateToProps, { closeCard, getBusinesses, selectBusinessMarker })(GoogleApiWrapper({ apiKey: GoogleMapsApiKey })(MapView));
