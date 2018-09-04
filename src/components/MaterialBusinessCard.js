@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
@@ -62,16 +62,14 @@ const styles = {
 };
 
 const MaterialBusinessCard = ({ classes, business, closeCard }) => {
-  console.log('business: ', business);
   return (
     <div id='card-wrapper'>
       <MuiThemeProvider theme={theme}>
         <Card className={classes.card}>
-          <CardMedia
+          {/* <CardMedia
             className={classes.media}
-            image={business.Primary_Image_Url}
             title={business.name}
-          />
+          /> */}
           <CardContent>
             <Typography className={classes.alumDetails} variant='subheading'>
               {business.alumName ? `${business.alumName}, ${business.alumDegree}` : null}

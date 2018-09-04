@@ -12,6 +12,7 @@ const styles = {
   },
   display1: {
     alignSelf: 'flex-start',
+    textAlign: 'left',
     marginTop: '10px',
   },
 };

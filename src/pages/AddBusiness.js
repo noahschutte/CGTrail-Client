@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import AddBusinessForm from '../components/AddBusinessForm';
+
 class AddBusiness extends Component {
   render() {
     return (
-      <div>
-        Add Business Page
-      </div>
+      <AddBusinessForm />
     );
   }
 }
