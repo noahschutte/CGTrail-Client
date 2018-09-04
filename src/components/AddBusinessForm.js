@@ -31,8 +31,19 @@ const styles = theme => ({
     borderBottom: 'rgba(0,0,0,0.3) 1px solid',
     color: 'black',
   },
-  button: {
-    width: '50%',
+  addLocationButton: {
+    // width: '50%',
+  },
+  saveButton: {
+    backgroundColor: 'crimson',
+    color: 'white',
+    maxWidth: '95vw',
+    // marginTop: 3 * theme.spacing.unit,
+  },
+  buttonText: {
+    margin: theme.spacing.unit,
+    marginLeft: 2 * theme.spacing.unit,
+    marginRight: 2 * theme.spacing.unit,
   },
   addLocationIcon: {
     marginRight: theme.spacing.unit,
@@ -56,7 +67,7 @@ const locationForm = {
 };
 
 const LocationAddressForm = props => {
-  const { classes, index } = props;
+  const { classes, handleChange, index } = props;
   return (
     <Grid container>
       <Grid className={classes.locationFormTitle} item xs={12}>
@@ -65,43 +76,43 @@ const LocationAddressForm = props => {
       <Grid item xs={12} sm={6}>
         <FormControl className={classes.formControl}>
           <InputLabel className={classes.inputLabel}>Location Name</InputLabel>
-          <Input className={classes.input} type='text' id={`location-name-${index}`} />
+          <Input onChange={e => handleChange('name', e, index)} className={classes.input} type='text' id={`location-name-${index}`} />
         </FormControl>
       </Grid>
       <Grid item xs={12} sm={6}>
         <FormControl className={classes.formControl}>
           <InputLabel className={classes.inputLabel}>Location Phone</InputLabel>
-          <Input className={classes.input} type='text' id={`location-phone-${index}`} />
+          <Input onChange={e => handleChange('phone', e, index)} className={classes.input} type='text' id={`location-phone-${index}`} />
         </FormControl>
       </Grid>
       <Grid item xs={12} sm={6}>
         <FormControl className={classes.formControl}>
           <InputLabel className={classes.inputLabel}>Street Address</InputLabel>
-          <Input className={classes.input} type='text' id={`location-street-${index}`} />
+          <Input onChange={e => handleChange('street', e, index)} className={classes.input} type='text' id={`location-street-${index}`} />
         </FormControl>
       </Grid>
       <Grid item xs={12} sm={6}>
         <FormControl className={classes.formControl}>
           <InputLabel className={classes.inputLabel}>Suite</InputLabel>
-          <Input className={classes.input} type='text' id={`location-suite-${index}`} />
+          <Input onChange={e => handleChange('suite', e, index)} className={classes.input} type='text' id={`location-suite-${index}`} />
         </FormControl>
       </Grid>
       <Grid item xs={12} sm={6}>
         <FormControl className={classes.formControl}>
           <InputLabel className={classes.inputLabel}>City</InputLabel>
-          <Input className={classes.input} type='text' id={`location-city-${index}`} />
+          <Input onChange={e => handleChange('city', e, index)} className={classes.input} type='text' id={`location-city-${index}`} />
         </FormControl>
       </Grid>
       <Grid item xs={12} sm={6}>
         <FormControl className={classes.formControl}>
           <InputLabel className={classes.inputLabel}>State</InputLabel>
-          <Input className={classes.input} type='text' id={`location-state-${index}`} />
+          <Input onChange={e => handleChange('state', e, index)} className={classes.input} type='text' id={`location-state-${index}`} />
         </FormControl>
       </Grid>
       <Grid item xs={12} sm={6}>
         <FormControl className={classes.formControl}>
           <InputLabel className={classes.inputLabel}>Zip</InputLabel>
-          <Input className={classes.input} type='text' id={`location-zip-${index}`} />
+          <Input onChange={e => handleChange('zip', e, index)} className={classes.input} type='text' id={`location-zip-${index}`} />
         </FormControl>
       </Grid>
     </Grid>
@@ -109,8 +120,7 @@ const LocationAddressForm = props => {
 };
 
 const AddBusinessForm = props => {
-  const { addLocationForm, classes, locations } = props;
-  console.log('locations: ', locations);
+  const { addLocationForm, classes, handleChange, handleNestedLocationChange, locations, saveBusiness } = props;
   return (
     <div className={classes.root}>
       <Grid container>
@@ -118,65 +128,66 @@ const AddBusinessForm = props => {
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
               <InputLabel className={classes.inputLabel}>Alum Name</InputLabel>
-              <Input className={classes.input} type='text' id='alum-name' />
+              <Input onChange={(event) => handleChange('alumName', event)} className={classes.input} type='text' id='alum-name' />
             </FormControl>
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
               <InputLabel className={classes.inputLabel}>Alum Title</InputLabel>
-              <Input className={classes.input} type='text' id='alum-title' />
+              <Input onChange={(event) => handleChange('alumTitle', event)} className={classes.input} type='text' id='alum-title' />
             </FormControl>
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
               <InputLabel className={classes.inputLabel}>Graduating Class</InputLabel>
-              <Input className={classes.input} type='text' id='alum-class' />
+              <Input onChange={(event) => handleChange('alumClass', event)} className={classes.input} type='text' id='alum-class' />
             </FormControl>
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
               <InputLabel className={classes.inputLabel}>Degree</InputLabel>
-              <Input className={classes.input} type='text' id='alum-degree' />
+              <Input onChange={(event) => handleChange('alumDegree', event)} className={classes.input} type='text' id='alum-degree' />
             </FormControl>
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
               <InputLabel className={classes.inputLabel}>Field of Study</InputLabel>
-              <Input className={classes.input} type='text' id='alum-field' />
+              <Input onChange={(event) => handleChange('alumField', event)} className={classes.input} type='text' id='alum-field' />
             </FormControl>
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
               <InputLabel className={classes.inputLabel}>Business Name</InputLabel>
-              <Input className={classes.input} type='text' id='name' />
+              <Input onChange={(event) => handleChange('name', event)} className={classes.input} type='text' id='name' />
             </FormControl>
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
               <InputLabel className={classes.inputLabel}>Business Website</InputLabel>
-              <Input className={classes.input} type='text' id='url' />
+              <Input onChange={(event) => handleChange('url', event)} className={classes.input} type='text' id='url' />
             </FormControl>
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
               <InputLabel className={classes.inputLabel}>Business Description</InputLabel>
-              <Input multiline className={classes.input} type='text' id='description' />
+              <Input onChange={(event) => handleChange('description', event)} multiline className={classes.input} type='text' id='description' />
             </FormControl>
           </Grid>
-
           {
             locations.map((location, index) => {
               return (
                 <LocationAddressForm
                   key={index}
+                  index={index}
                   classes={classes}
+                  handleChange={handleNestedLocationChange}
                 />
               );
             })
@@ -184,9 +195,17 @@ const AddBusinessForm = props => {
 
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
-              <Button onClick={() => addLocationForm(locationForm)} variant='contained' size='small' className={classes.button}>
+              <Button onClick={() => addLocationForm(locationForm)} variant='contained' size='small' className={classes.addLocationButton}>
                 <AddCircle className={classes.addLocationIcon} />
-                Add Business Location
+                <div className={classes.buttonText}>Add Location</div>
+              </Button>
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <FormControl className={classes.formControl}>
+              <Button onClick={saveBusiness} variant='contained' size='small' className={classes.saveButton}>
+                <div className={classes.buttonText}>Save Business</div>
               </Button>
             </FormControl>
           </Grid>
@@ -200,11 +219,15 @@ const AddBusinessForm = props => {
 AddBusinessForm.propTypes = {
   addLocationForm: PropTypes.func,
   classes: PropTypes.object,
+  handleChange: PropTypes.func,
+  handleNestedLocationChange: PropTypes.func,
   locations: PropTypes.array,
+  saveBusiness: PropTypes.func,
 };
 
 LocationAddressForm.propTypes = {
   classes: PropTypes.object,
+  handleChange: PropTypes.func,
   index: PropTypes.number,
 };
 

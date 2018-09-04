@@ -15,3 +15,6 @@ export const LOGOUT = 'LOGOUT';
 export const LOGOUT_ERROR = 'LOGOUT_ERROR';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const SET_JWT = 'SET_JWT';
+
+export const SAVE_BUSINESS_ERROR = 'SAVE_BUSINESS_ERROR';
+export const SAVE_BUSINESS_SUCCESS = 'SAVE_BUSINESS_SUCCESS';

@@ -34,6 +34,16 @@ export default function businessesReducer(state = INITIAL_STATE, action) {
         isFetching: false,
         businesses: action.businesses,
       };
+    case types.SAVE_BUSINESS_ERROR:
+      return {
+        ...state,
+        isFetching: false,
+      };
+    case types.SAVE_BUSINESS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+      };
     case types.SELECT_BUSINESS_MARKER:
       return {
         ...state,
