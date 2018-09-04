@@ -5,8 +5,9 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
+import AddCircle from '@material-ui/icons/AddCircle';
 // import FormHelperText from '@material-ui/core/FormHelperText';
-// import Button from '@material-ui/core/button';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -30,10 +31,86 @@ const styles = theme => ({
     borderBottom: 'rgba(0,0,0,0.3) 1px solid',
     color: 'black',
   },
+  button: {
+    width: '50%',
+  },
+  addLocationIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  locationFormTitle: {
+    marginTop: '15px',
+  },
 });
 
+const locationForm = {
+  name: '',
+  phone: '',
+  address: {
+    street: '',
+    suite: '',
+    city: '',
+    state: '',
+    zip: '',
+  },
+  coords: '',
+};
+
+const LocationAddressForm = props => {
+  const { classes, index } = props;
+  return (
+    <Grid container>
+      <Grid className={classes.locationFormTitle} item xs={12}>
+        <div style={{ fontWeight: 600 }}>Business Location Info</div>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <FormControl className={classes.formControl}>
+          <InputLabel className={classes.inputLabel}>Location Name</InputLabel>
+          <Input className={classes.input} type='text' id={`location-name-${index}`} />
+        </FormControl>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <FormControl className={classes.formControl}>
+          <InputLabel className={classes.inputLabel}>Location Phone</InputLabel>
+          <Input className={classes.input} type='text' id={`location-phone-${index}`} />
+        </FormControl>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <FormControl className={classes.formControl}>
+          <InputLabel className={classes.inputLabel}>Street Address</InputLabel>
+          <Input className={classes.input} type='text' id={`location-street-${index}`} />
+        </FormControl>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <FormControl className={classes.formControl}>
+          <InputLabel className={classes.inputLabel}>Suite</InputLabel>
+          <Input className={classes.input} type='text' id={`location-suite-${index}`} />
+        </FormControl>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <FormControl className={classes.formControl}>
+          <InputLabel className={classes.inputLabel}>City</InputLabel>
+          <Input className={classes.input} type='text' id={`location-city-${index}`} />
+        </FormControl>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <FormControl className={classes.formControl}>
+          <InputLabel className={classes.inputLabel}>State</InputLabel>
+          <Input className={classes.input} type='text' id={`location-state-${index}`} />
+        </FormControl>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <FormControl className={classes.formControl}>
+          <InputLabel className={classes.inputLabel}>Zip</InputLabel>
+          <Input className={classes.input} type='text' id={`location-zip-${index}`} />
+        </FormControl>
+      </Grid>
+    </Grid>
+  );
+};
+
 const AddBusinessForm = props => {
-  const { classes } = props;
+  const { addLocationForm, classes, locations } = props;
+  console.log('locations: ', locations);
   return (
     <div className={classes.root}>
       <Grid container>
@@ -90,13 +167,30 @@ const AddBusinessForm = props => {
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
               <InputLabel className={classes.inputLabel}>Business Description</InputLabel>
-              <Input multiline className={classes.input} type='text' id='url' />
+              <Input multiline className={classes.input} type='text' id='description' />
             </FormControl>
           </Grid>
 
-          {/* <div>
-            Ability to add one or more locations here
-          </div> */}
+          {
+            locations.map((location, index) => {
+              return (
+                <LocationAddressForm
+                  key={index}
+                  classes={classes}
+                />
+              );
+            })
+          }
+
+          <Grid item xs={12} sm={6}>
+            <FormControl className={classes.formControl}>
+              <Button onClick={() => addLocationForm(locationForm)} variant='contained' size='small' className={classes.button}>
+                <AddCircle className={classes.addLocationIcon} />
+                Add Business Location
+              </Button>
+            </FormControl>
+          </Grid>
+
         </form>
       </Grid>
     </div>
@@ -104,7 +198,14 @@ const AddBusinessForm = props => {
 };
 
 AddBusinessForm.propTypes = {
+  addLocationForm: PropTypes.func,
   classes: PropTypes.object,
+  locations: PropTypes.array,
+};
+
+LocationAddressForm.propTypes = {
+  classes: PropTypes.object,
+  index: PropTypes.number,
 };
 
 export default withStyles(styles)(AddBusinessForm);
