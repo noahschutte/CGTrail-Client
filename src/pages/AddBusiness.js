@@ -67,7 +67,8 @@ class AddBusiness extends Component {
   }
 
   saveBusiness = () => {
-    this.props.saveBusiness(this.state, this.props.token);
+    const redirect = this.props.history.push('/businesses');
+    this.props.saveBusiness(this.state, this.props.token, redirect);
   }
 
   render() {
@@ -85,6 +86,7 @@ class AddBusiness extends Component {
 }
 
 AddBusiness.propTypes = {
+  history: PropTypes.object,
   saveBusiness: PropTypes.func,
   token: PropTypes.string,
 };

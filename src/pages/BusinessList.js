@@ -13,6 +13,12 @@ class BusinessList extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (!this.props.businesses.length && !this.props.isFetching) {
+      this.props.getBusinesses();
+    }
+  }
+
   render() {
     return this.props.isFetching || !this.props.businesses.length ? <LoadingSpinner /> : (
       <div>

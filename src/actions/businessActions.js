@@ -58,7 +58,7 @@ export function getBusinessesSuccess(businesses) {
   };
 }
 
-export function saveBusiness(businessData, token) {
+export function saveBusiness(businessData, token, callback) {
   return function(dispatch) {
     dispatch(beginFetch());
     /* eslint-disable */
@@ -76,6 +76,7 @@ export function saveBusiness(businessData, token) {
       .then(res => res.json())
       .then(response => {
         console.log('response: ', response);
+        callback();
       })
       .catch(err => {
         dispatch(saveBusinessError(err));
