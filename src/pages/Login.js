@@ -24,6 +24,7 @@ class Login extends Component {
   handleLogin = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
+    const redirect = this.props.history.push('/');
     let emailHelperText = '';
     let passwordHelperText = '';
 
@@ -34,7 +35,7 @@ class Login extends Component {
       passwordHelperText = 'password is required';
     }
     if (password && email) {
-      this.props.login(email, password);
+      this.props.login(email, password, redirect);
     } else {
       this.setState({ emailHelperText, passwordHelperText });
     }
@@ -59,6 +60,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
+  history: PropTypes.object,
   login: PropTypes.func,
 };
 

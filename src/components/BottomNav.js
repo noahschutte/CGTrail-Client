@@ -64,7 +64,7 @@ class BottomNav extends Component {
 
 BottomNav.propTypes = {
   classes: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.boolean,
+  isLoggedIn: PropTypes.bool,
 };
 
 export default withStyles(styles)(BottomNav);

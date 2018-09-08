@@ -25,7 +25,7 @@ export function beginLogout() {
   };
 }
 
-export function login(email, password) {
+export function login(email, password, callback) {
   return function(dispatch) {
     dispatch(beginFetch());
     const body = JSON.stringify({
@@ -46,6 +46,7 @@ export function login(email, password) {
       .then(res => {
         if (res.ok) {
           dispatch(loginSuccess(res.headers.get('x-auth')));
+          callback();
         } else {
           throw res;
         }
