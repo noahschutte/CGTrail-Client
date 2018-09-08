@@ -107,6 +107,7 @@ export function saveBusiness(businessData, token, callback) {
       .then(res => res.json())
       .then(response => {
         callback && callback();
+        dispatch(saveBusinessSuccess());
       })
       .catch(err => {
         dispatch(saveBusinessError(err));
