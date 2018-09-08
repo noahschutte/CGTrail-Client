@@ -18,6 +18,17 @@ export default function businessesReducer(state = INITIAL_STATE, action) {
         ...state,
         business: null,
       };
+    case types.DELETE_BUSINESS_ERROR:
+      return {
+        ...state,
+        isFetching: false,
+      };
+    case types.DELETE_BUSINESS_SUCCESS:
+      return {
+        ...state,
+        businesses: state.businesses.filter(biz => biz.id !== action.id),
+        isFetching: false,
+      };
     case types.GET_BUSINESSES:
       return {
         ...state,

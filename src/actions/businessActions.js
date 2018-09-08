@@ -1,4 +1,5 @@
 import * as types from './actionTypes';
+
 const env = process.env.REACT_APP_ENV;
 
 let api = '';
@@ -19,6 +20,36 @@ export function beginFetch() {
 export function closeCard() {
   return {
     type: types.CLOSE_CARD,
+  };
+}
+
+export function deleteBusiness(id, token) {
+  return function(dispatch) {
+    dispatch(beginFetch());
+    /* eslint-disable */
+    fetch(api + '/businesses/' + id, {
+      headers: new Headers({
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'DELETE, OPTIONS',
+        'x-auth': token,
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, x-auth',
+        'Content-Type': 'application/json',
+      }),
+      method: 'DELETE',
+    })
+      .then(res => {
+        if (res.ok) {
+          // success
+          dispatch({ type: types.DELETE_BUSINESS_SUCCESS });
+        } else {
+          // fail
+          dispatch({ type: types.DELETE_BUSINESS_ERROR, id });
+        }
+      })
+      .catch(err => {
+        console.error('error: ', err);
+      })
+    /* eslint-enable */
   };
 }
 
@@ -75,8 +106,7 @@ export function saveBusiness(businessData, token, callback) {
     })
       .then(res => res.json())
       .then(response => {
-        console.log('response: ', response);
-        callback();
+        callback && callback();
       })
       .catch(err => {
         dispatch(saveBusinessError(err));

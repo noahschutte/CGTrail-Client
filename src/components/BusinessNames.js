@@ -34,25 +34,25 @@ const styles = {
   },
 };
 
-const AdminButtons = ({ classes }) => (
+const AdminButtons = ({ classes, handleDelete }) => (
   <div className={classes.adminButtons}>
     <a className={[classes.adminButton, classes.adminEdit].join(' ')} onClick={() => console.log('edit')}>Edit </a> |
-    <a className={[classes.adminButton, classes.adminDelete].join(' ')} onClick={() => console.log('delete')}> Delete</a>
+    <a className={[classes.adminButton, classes.adminDelete].join(' ')} onClick={handleDelete}> Delete</a>
   </div>
 );
 
-const BusinessNames = ({ businessNames, classes, isLoggedIn }) => {
+const BusinessNames = ({ businesses, classes, deleteBusiness, isLoggedIn, token }) => {
   return (
     <div className={classes.root}>
-      {businessNames.map((business, index) => {
+      {businesses.map((business, index) => {
         return (
           <div className={classes.display1} key={index}>
             <Typography color='inherit' variant='display1'>
-              {business}
+              {business.name}
             </Typography>
             {
               isLoggedIn
-                ? <AdminButtons classes={classes} />
+                ? <AdminButtons handleDelete={() => deleteBusiness(business._id, token)} classes={classes} />
                 : null
             }
           </div>
@@ -64,12 +64,15 @@ const BusinessNames = ({ businessNames, classes, isLoggedIn }) => {
 
 AdminButtons.propTypes = {
   classes: PropTypes.object,
+  handleDelete: PropTypes.func,
 };
 
 BusinessNames.propTypes = {
-  businessNames: PropTypes.array,
+  businesses: PropTypes.array,
   classes: PropTypes.object,
+  deleteBusiness: PropTypes.func,
   isLoggedIn: PropTypes.bool,
+  token: PropTypes.string,
 };
 
 export default withStyles(styles)(BusinessNames);
