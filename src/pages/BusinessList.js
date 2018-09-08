@@ -16,19 +16,24 @@ class BusinessList extends Component {
   render() {
     return this.props.isFetching || !this.props.businesses.length ? <LoadingSpinner /> : (
       <div>
-        <BusinessNames businessNames={this.props.businesses.map(business => business.name).sort()} />
+        <BusinessNames isLoggedIn={this.props.isLoggedIn} businessNames={this.props.businesses.map(business => business.name).sort()} />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ businesses }) => {
-  return { businesses: businesses.businesses, isFetching: businesses.isFetching };
+const mapStateToProps = ({ businesses, users }) => {
+  return {
+    businesses: businesses.businesses,
+    isFetching: businesses.isFetching,
+    isLoggedIn: users.isLoggedIn,
+  };
 };
 
 BusinessList.propTypes = {
   businesses: PropTypes.array,
   getBusinesses: PropTypes.func,
+  isLoggedIn: PropTypes.bool,
   isFetching: PropTypes.bool,
 };
 
