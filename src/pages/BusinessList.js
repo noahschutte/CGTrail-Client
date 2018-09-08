@@ -20,7 +20,7 @@ class BusinessList extends Component {
   }
 
   render() {
-    return this.props.isFetching || !this.props.businesses.length ? <LoadingSpinner /> : (
+    return this.props.isFetching ? <LoadingSpinner /> : (
       <div>
         <BusinessNames
           businesses={this.props.businesses}
