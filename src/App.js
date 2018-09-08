@@ -57,7 +57,7 @@ class App extends Component {
               />
             </Switch>
           </BrowserRouter>
-          <BottomNav />
+          <BottomNav isLoggedIn={this.props.isLoggedIn} />
         </MuiThemeProvider>
       </div>
     );

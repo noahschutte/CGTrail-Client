@@ -40,7 +40,7 @@ class BottomNav extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, isLoggedIn } = this.props;
     const { value } = this.state;
 
     return (
@@ -52,7 +52,11 @@ class BottomNav extends Component {
       >
         <BottomNavigationAction href='/' className={classes.icon} label='Near Me' icon={<GpsFixedIcon />} />
         <BottomNavigationAction href='/login' className={classes.loginIcon} label='Login' icon={<AccountCircle />} />
-        <BottomNavigationAction href='/addbusiness' className={classes.addIcon} label='Add Business' icon={<AddCircleOutline />} />
+        {
+          isLoggedIn
+            ? <BottomNavigationAction href='/addbusiness' className={classes.addIcon} label='Add Business' icon={<AddCircleOutline />} />
+            : null
+        }
       </BottomNavigation>
     );
   }
@@ -60,6 +64,7 @@ class BottomNav extends Component {
 
 BottomNav.propTypes = {
   classes: PropTypes.object.isRequired,
+  isLoggedIn: PropTypes.boolean,
 };
 
 export default withStyles(styles)(BottomNav);
